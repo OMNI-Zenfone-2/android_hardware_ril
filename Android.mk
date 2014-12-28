@@ -1,8 +1,5 @@
-ifeq ($(TARGET_RIL_VARIANT),)
-    RIL_ROOT := $(call my-dir)
+RIL_PATH := $(call my-dir)
 
-    include $(RIL_ROOT)/libril/Android.mk
-    include $(RIL_ROOT)/librilutils/Android.mk
-    include $(RIL_ROOT)/reference-ril/Android.mk
-    include $(RIL_ROOT)/rild/Android.mk
+ifeq ($(RIL_PATH),$(call project-path-for,ril))
+include $(call first-makefiles-under,$(RIL_PATH))
 endif
